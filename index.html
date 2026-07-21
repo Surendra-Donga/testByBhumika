@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ball Balancing Game</title>
+  </head>
+  <body>
+    <div id="ui-layer">
+      <div id="timer">TIME <span id="time-val">180</span>s</div>
+      
+      <div id="modal" class="hidden">
+        <div class="modal-content">
+          <h2>SIMULATION COMPLETE</h2>
+          <div class="percentage" id="score-percentage">0.0%</div>
+          <div class="subtext">BALANCED TIME: <span id="balanced-time">0.00</span>s / 180s</div>
+          <button id="restart-btn">RESTART SIMULATION</button>
+        </div>
+      </div>
+    </div>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,119 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden;
+  background-color: #e5e7eb;
+}
+
+#app {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+#ui-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  pointer-events: none; /* Let clicks pass through to 3D canvas if needed */
+}
+
+#timer {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #1f2937;
+  color: #67e8f9;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(4px);
+  pointer-events: auto; /* Catch clicks on modal */
+}
+
+#modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background-color: #111827;
+  padding: 40px 60px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border: 1px solid #1f2937;
+}
+
+.modal-content h2 {
+  color: #9ca3af;
+  font-size: 1rem;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.percentage {
+  color: #06b6d4;
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  text-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+}
+
+.subtext {
+  color: #e5e7eb;
+  font-size: 1rem;
+  margin-bottom: 30px;
+  font-family: monospace;
+  letter-spacing: 1px;
+}
+
+#restart-btn {
+  background-color: #06b6d4;
+  color: #111827;
+  border: none;
+  padding: 16px 32px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
+}
+
+#restart-btn:hover {
+  background-color: #22d3ee;
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.5);
+}
+
+#restart-btn:active {
+  transform: translateY(0);
+}
