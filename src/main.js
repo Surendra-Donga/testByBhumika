@@ -14,6 +14,7 @@ const MAX_TILT = 0.2; // radians
 let isPlaying = false;
 let timeRemaining = GAME_DURATION;
 let balanceTime = 0;
+let elapsedTime = 0;
 let lastFrameTime = 0;
 
 // Input State
@@ -141,6 +142,7 @@ function startGame() {
   isPlaying = true;
   timeRemaining = GAME_DURATION;
   balanceTime = 0;
+  elapsedTime = 0;
   ballMesh.position.set(0, 0.5 + BALL_RADIUS, 0);
   ballVelocity.set(0, 0);
   plateGroup.rotation.set(0, 0, 0);
@@ -179,8 +181,8 @@ function animate(time) {
   delta = Math.min(delta, 0.1);
   
   // Update Timer
-  balanceTime += delta;
-  timeRemaining = Math.max(0, GAME_DURATION - Math.floor(balanceTime));
+  elapsedTime += delta;
+  timeRemaining = Math.max(0, GAME_DURATION - Math.floor(elapsedTime));
   timeValEl.innerText = timeRemaining;
   
   // 1. Wobble the plate
@@ -227,6 +229,12 @@ function animate(time) {
   
   // 4. Check lose/bounce condition
   const distFromCenter = Math.hypot(ballMesh.position.x, ballMesh.position.z);
+  
+  // Only score when the ball is on the center X
+  if (distFromCenter <= 1.5) {
+    balanceTime += delta;
+  }
+  
   if (distFromCenter > PLATE_RADIUS - BALL_RADIUS) {
     // Bounce off the wall
     const normalX = ballMesh.position.x / distFromCenter;
@@ -246,7 +254,7 @@ function animate(time) {
     ballVelocity.y *= 0.5;
   }
   
-  if (balanceTime >= GAME_DURATION) {
+  if (elapsedTime >= GAME_DURATION) {
     endGame(); // You won!
   }
 
