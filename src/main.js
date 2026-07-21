@@ -155,6 +155,7 @@ function endGame() {
   isPlaying = false;
   modalEl.classList.remove('hidden');
   
+  balanceTime = Math.min(balanceTime, GAME_DURATION);
   const percentage = (balanceTime / GAME_DURATION) * 100;
   scorePercentageEl.innerText = `${percentage.toFixed(1)}%`;
   balancedTimeEl.innerText = balanceTime.toFixed(2);
@@ -171,8 +172,11 @@ function animate(time) {
     return;
   }
   
-  const delta = (time - lastFrameTime) / 1000; // seconds
+  let delta = (time - lastFrameTime) / 1000; // seconds
   lastFrameTime = time;
+  
+  // Cap delta to prevent massive jumps when the browser tab is inactive
+  delta = Math.min(delta, 0.1);
   
   // Update Timer
   balanceTime += delta;
